@@ -1,43 +1,76 @@
 import { Hour } from "./models";
-
-export interface cell {
+ type Color  = "#00E131" | "yellow" | "red" | "#CCC";
+ type  Status  = "free" | "reserved" | "busy" | "info";
+export interface Cell {
   status: "free" | "reserved" | "busy" | "info";
-  color: "#00E131" | "yellow" | "red" | "#CCC";
+  color: Color
   time?: Hour;
   studio?: "A" | "B" | "C" | "D";
+  // onStatusChange(): {newStatus:string };
+  // onColorChange?: (color:Color) =>"#00E131" | "yellow" | "red" | "#CCC"| undefined   ;
 }
+// const onColorChange =(color:Color) => {
+//   if (color==="#00E131") return "yellow";
+//   if (color==="yellow") return "red";
+//   if (color==="red") return "#00E131";
+// }
+export class Cell {
+  constructor(color:Color,status:Status,time?:Hour) {
+    this.color = color;
+    this.status = status;
+    this.time = time;
+  }
+
+}
+
+export const   onColorChange =(color:Color) => {
+  if (color==="#00E131") return "yellow";
+if (color==="yellow") return "red";
+if (color==="red") return "#00E131";
+return  "#00E131"
+}
+
 export interface Options {
   date: Date | string | number;
-  ColA: cell[];
-  ColB: cell[];
-  ColC: cell[];
-  ColD: cell[];
+  ColA: Cell[];
+  ColB: Cell[];
+  ColC: Cell[];
+  ColD: Cell[];
 }
 export interface Day {
   date: Date | string | number;
-  studioColA: cell[];
-  studioColB: cell[];
-  studioColC: cell[];
-  studioColD: cell[];
+  cell: Cell;
+  studioColA: Cell[];
+  studioColB: Cell[];
+  studioColC: Cell[];
+  studioColD: Cell[];
   timeCol: string[];
   isPublished?: boolean;
+
+}
+export const enum Col  {
+  studioColA='studioColA',
+  studioColB='studioColB',
+  studioColC='studioColC',
+  studioColD ='studioColD',
 }
 export class Day {
   constructor(options: Options) {
     this.date = options.date;
-    this.studioColA = [
+    this.cell = {color :"#00E131",status: "free"}
+    this[Col.studioColA] = [
       { studio: "A", status: "info", color: "#CCC" },
       ...options.ColA,
     ];
-    this.studioColB = [
+    this[Col.studioColB] = [
       { studio: "B", status: "info", color: "#CCC" },
       ...options.ColB,
     ];
-    this.studioColC = [
+    this[Col.studioColC] = [
       { studio: "C", status: "info", color: "#CCC" },
       ...options.ColC,
     ];
-    this.studioColD = [
+    this[Col.studioColD] = [
       { studio: "D", status: "info", color: "#CCC" },
       ...options.ColD,
     ];
@@ -59,29 +92,74 @@ export class Day {
     ];
     this.isPublished = false;
   }
-}
-let cell:cell = {status:"free",color:"#00E131"}
-let col:cell[] = [
-  cell,
-  cell,
-  cell,
-  cell,
-  cell,
-  cell,
-  cell,
-  cell,
-  cell,
-  cell,
-  cell,
-  cell,
-  cell,
-]
 
+}
+
+let colA:Cell[] = [
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free")
+]
+let colB:Cell[] = [
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free")
+]
+let colC: Cell[] = [
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free")
+]
+let colD:Cell[] = [
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free"),
+  new Cell("#00E131","free")
+]
 const option = {
   date: Date.now(),
-  ColA: col,
-  ColB: col,
-  ColC: col,
-  ColD: col,
+  ColA: colA,
+  ColB: colB,
+  ColC: colC,
+  ColD: colD,
 }
 export  const initialDay = new Day(option)

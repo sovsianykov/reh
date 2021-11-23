@@ -1,11 +1,14 @@
 import React from "react";
-import { initialDay } from "./constants/constants";
 import CurrentDay from "./shared/components/currentDay/currentDay";
+import {CssBaseline} from "@mui/material";
+import {useTypesSelector} from "./hooks/useTypesSelector";
 
 function App() {
+    const {initialDay} = useTypesSelector(state => state.apiReducer)
   return (
     <div className="App">
-      <CurrentDay day={initialDay} />
+        <CssBaseline/>
+      <CurrentDay myDay={initialDay} />
     </div>
   );
 }
