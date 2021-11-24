@@ -1,6 +1,6 @@
 // export const BASE_URL2 =
 //   "https://chroniclingamerica.loc.gov/suggest/titles/?q=";
-import {Day} from "../constants/constants";
+import {Day, ListOfDays} from "../constants/constants";
 
 export const BASE_URL = "https://itunes.apple.com/search?term=";
 export enum ArticleActionTypes {
@@ -8,8 +8,14 @@ export enum ArticleActionTypes {
   FETCH_SUCCESS = "FETCH_SUCCESS",
   FETCH_FAILURE = "FETCH_FAILURE",
   FETCH_DATA = "FETCH_DATA",
+  UPDATE_DATA = "UPDATE_DATA"
 }
 export const query = ["", "album", "musicVideo", "song", "software"];
+
+interface UpdateDataAction {
+  type: ArticleActionTypes.UPDATE_DATA;
+  payload: ListOfDays;
+}
 
 interface FetchStartAction {
   type: ArticleActionTypes.FETCH_START;
@@ -32,7 +38,9 @@ export type ArticlesAction =
   | FetchStartAction
   | FetchSuccessAction
   | FetchFailure
-  | FetchData;
+  | FetchData
+  | UpdateDataAction;
+
 export interface Artist {
   artistId: number;
   artistName: string;

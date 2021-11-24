@@ -1,6 +1,15 @@
 import { BASE_URL, ArticleActionTypes, List, query } from "./constants";
+import {ListOfDays} from "../constants/constants";
+
+export const adminAction = {
+  updateData(DaysList:ListOfDays) {
+    return { type: ArticleActionTypes.UPDATE_DATA, payload: DaysList }
+  },
+}
+
 
 export const apiAction = {
+
   fetchStart() {
     return { type: ArticleActionTypes.FETCH_START };
   },

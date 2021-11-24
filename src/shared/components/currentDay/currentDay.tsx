@@ -1,11 +1,13 @@
-import React, { FunctionComponent, useCallback, useState } from "react";
+import React, {FunctionComponent, useCallback, useState} from "react";
 import "moment/locale/pt-br";
 import { createStyles, makeStyles } from "@mui/styles";
 import theme from "../../../constants/theme";
 import { Day, onColorChange } from "../../../constants/constants";
-import { Paper } from "@mui/material";
+import { Paper} from "@mui/material";
+
 interface CurrentDayProps {
   myDay: Day;
+  button?: JSX.Element
 }
 const useStyles = makeStyles(() =>
   createStyles({
@@ -57,12 +59,16 @@ const useStyles = makeStyles(() =>
       alignItems: "center",
       justifyContent: "center",
     },
+      btn : {
+        width: 358,
+          margin: "3px  0 10px 0"
+      }
   })
 );
 
-const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay }) => {
+const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
   const [day, setDay] = useState<Day>(myDay);
-  const classes = useStyles();
+  const classes = useStyles()
   const onClickHandler = useCallback(
     (i, col) => {
       col[i].color = onColorChange(col[i].color);
@@ -70,7 +76,6 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay }) => {
     },
     [day]
   );
-  console.log(day.date);
   return (
     <Paper className={classes.wrapper}>
       <div className={classes.date}>{day.date}</div>
@@ -131,6 +136,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay }) => {
           ))}
         </div>
       </div>
+      {button}
     </Paper>
   );
 };
