@@ -8,7 +8,7 @@ const DaysList = () => {
     const { initialDaysList } = useTypesSelector(state => state.apiReducer)
 
     return (
-        <Grid container >
+        <Grid container  style={{width:"100%"}}>
             {initialDaysList.map((day,i) =>(
                 <Grid item key={i} xs={12} sm={6} md={4} xl={3}>
                     <CurrentDay myDay={day}/>
