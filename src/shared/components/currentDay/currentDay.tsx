@@ -40,6 +40,14 @@ const useStyles = makeStyles(() =>
       letterSpacing: 0.6,
       background: "#d5d4d4",
       cursor: "pointer",
+      transition: ".15s ease-in-out",
+      color: "#034d4d",
+
+      "&:hover": {
+        background: "#acacac",
+        // transform: "rotateZ(360deg)",
+        color: "#fff",
+      },
     },
     date: {
       width: 358,
@@ -59,10 +67,10 @@ const useStyles = makeStyles(() =>
       alignItems: "center",
       justifyContent: "center",
     },
-      btn : {
-        width: 358,
-          margin: "3px  0 10px 0"
-      }
+    btn: {
+      width: 358,
+      margin: "3px  0 10px 0",
+    },
   })
 );
 
@@ -72,6 +80,9 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
   const onClickHandler = useCallback(
     (i, col) => {
       col[i].color = onColorChange(col[i].color);
+      if (col[i].color === "#034d4d") col[i].status = "free";
+      if (col[i].color === "yellow") col[i].status = "reserv";
+      if (col[i].color === "#D32F2F") col[i].status = "busy";
       setDay({ ...day, [col]: col });
     },
     [day]
@@ -95,7 +106,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
               style={{ background: cell.color }}
               key={i}
             >
-              {cell.studio}
+              {cell.status}
             </div>
           ))}
         </div>
@@ -107,7 +118,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
               style={{ background: cell.color }}
               key={i}
             >
-              {cell.studio}
+              {cell.status}
             </div>
           ))}
         </div>
@@ -119,7 +130,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
               style={{ background: cell.color }}
               key={i}
             >
-              {cell.studio}
+              {cell.status}
             </div>
           ))}
         </div>
@@ -131,7 +142,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
               style={{ background: cell.color }}
               key={i}
             >
-              {cell.studio}
+              {cell.status}
             </div>
           ))}
         </div>

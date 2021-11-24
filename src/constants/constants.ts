@@ -1,10 +1,10 @@
 import { Hour } from "./models";
 import  moment from 'moment';
 import 'moment/locale/pt-br';
-type Color = "#00E131" | "yellow" | "red" | "#CCC";
-type Status = "free" | "reserved" | "busy" | "info";
+type Color = "#034d4d" | "yellow" | "#D32F2F" | "#CCC";
+type Status = "free" | "reserv" | "busy" | "info";
 export interface Cell {
-  status: "free" | "reserved" | "busy" | "info";
+  status: "free" | "reserv" | "busy" | "info"| "A"|"B"|"C"|"D";
   color: Color;
   time?: Hour;
   studio?: "A" | "B" | "C" | "D";
@@ -19,9 +19,9 @@ export class Cell {
 }
 
 export const onColorChange = (color: Color) => {
-  if (color === "#00E131") return "yellow";
-  if (color === "yellow") return "red";
-  if (color === "red") return "#00E131";
+  if (color === "#034d4d") return "yellow";
+  if (color === "yellow") return "#D32F2F";
+  if (color === "#D32F2F") return "#034d4d";
   return "#00E131";
 };
 
@@ -51,21 +51,21 @@ export const enum Col {
 export class Day {
   constructor(options: Options) {
     this.date = options.date;
-    this.cell = { color: "#00E131", status: "free" };
+    this.cell = { color: "#034d4d", status: "free" };
     this[Col.studioColA] = [
-      { studio: "A", status: "info", color: "#CCC" },
+      { studio: "A", status: "A", color: "#CCC" },
       ...options.ColA,
     ];
     this[Col.studioColB] = [
-      { studio: "B", status: "info", color: "#CCC" },
+      { studio: "B", status: "B", color: "#CCC" },
       ...options.ColB,
     ];
     this[Col.studioColC] = [
-      { studio: "C", status: "info", color: "#CCC" },
+      { studio: "C", status: "C", color: "#CCC" },
       ...options.ColC,
     ];
     this[Col.studioColD] = [
-      { studio: "D", status: "info", color: "#CCC" },
+      { studio: "D", status: "D", color: "#CCC" },
       ...options.ColD,
     ];
     this.timeCol = [
@@ -90,7 +90,7 @@ export class Day {
 const getCol = () => {
   const arr = [];
   for (let i = 0; i < 13; i++) {
-    arr[i] = new Cell("#00E131", "free");
+    arr[i] = new Cell("#034d4d", "free");
   }
   return arr;
 };

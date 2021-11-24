@@ -5,7 +5,6 @@ import CurrentDay from "../../shared/components/currentDay/currentDay";
 import { adminAction } from "../../redux/actions";
 import { createStyles, makeStyles } from "@mui/styles";
 import {useDispatch} from "react-redux";
-import {Day} from "../../constants/constants";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -27,7 +26,7 @@ const DaysList = () => {
       dispatch(adminAction.updateData(initialDaysList))
   }, [dispatch, initialDaysList]);
   return (
-    <Grid container style={{ overflowY: "hidden" }} spacing={3}>
+    <Grid container style={{ overflowY: "hidden" }} spacing={.5}>
       {initialDaysList.map((day, i) => (
         <Grid item key={i} xs={12} sm={6} md={4} xl={3}>
           <CurrentDay
