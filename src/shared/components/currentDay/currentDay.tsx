@@ -3,7 +3,7 @@ import "moment/locale/pt-br";
 import { createStyles, makeStyles } from "@mui/styles";
 import theme from "../../../constants/theme";
 import { Day, onColorChange } from "../../../constants/constants";
-import {Paper} from "@mui/material";
+import { Paper } from "@mui/material";
 interface CurrentDayProps {
   myDay: Day;
 }
@@ -27,7 +27,7 @@ const useStyles = makeStyles(() =>
       width: "100%",
       marginBottom: theme.spacing(0.25),
       height: 30,
-        display:'flex',
+      display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
@@ -36,30 +36,27 @@ const useStyles = makeStyles(() =>
       fontSize: "18px",
       padding: "5px 0",
       letterSpacing: 0.6,
-      // border: ".5px solid #000",
       background: "#d5d4d4",
       cursor: "pointer",
     },
     date: {
       width: 358,
       height: 50,
-        padding: "5px 0",
+      padding: "5px 0",
       fontSize: "20px",
       textAlign: "center",
-        lineHeight: '40px',
-        letterSpacing: 0.6,
-        // border: ".5px solid #000",
-        background: "#d5d4d4",
+      lineHeight: "40px",
+      letterSpacing: 0.6,
+      background: "#d5d4d4",
     },
-      wrapper :{
-          // width: 370,
-          paddingTop: 4,
-          // border: ".5px solid #ccc",
-          display:"flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-      }
+    wrapper: {
+      width: "100%",
+      paddingTop: 4,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+    },
   })
 );
 
