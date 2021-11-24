@@ -10,7 +10,7 @@ interface CurrentDayProps {
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      width: 368,
+      width: 360,
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
@@ -18,7 +18,7 @@ const useStyles = makeStyles(() =>
       margin: theme.spacing(0.5),
     },
     column: {
-      width: 72,
+      width: 68,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -41,7 +41,7 @@ const useStyles = makeStyles(() =>
       cursor: "pointer",
     },
     date: {
-      width: 368,
+      width: 362,
       height: 50,
       padding: 5,
       fontSize: "20px",
@@ -52,7 +52,7 @@ const useStyles = makeStyles(() =>
         background: "#d5d4d4",
     },
       wrapper :{
-          width: 376,
+          width: 370,
           paddingTop: 4,
           // border: ".5px solid #ccc",
           display:"flex",
