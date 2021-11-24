@@ -1,11 +1,12 @@
 import { ArticlesAction, ArticleActionTypes, DaysState } from "./constants";
-import { initialDay } from "../constants/constants";
+import {initialDay, initialDaysList} from "../constants/constants";
 
 const initialState: DaysState = {
   list: null,
   loading: false,
   error: null,
   initialDay: initialDay,
+  initialDaysList: initialDaysList
 };
 
 function apiReducer(state = initialState, action: ArticlesAction): DaysState {

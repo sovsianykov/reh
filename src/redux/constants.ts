@@ -75,4 +75,5 @@ export interface DaysState {
   loading: boolean;
   error: null | string;
   initialDay: Day;
+   initialDaysList: Day[];
 }
