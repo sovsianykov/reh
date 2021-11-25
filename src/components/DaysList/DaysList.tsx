@@ -23,7 +23,7 @@ const DaysList = () => {
     e.preventDefault();
       console.log(initialDaysList)
     initialDaysList[initialDaysList.findIndex(d => d.date === day.date)] = day
-      dispatch(adminAction.updateData(initialDaysList))
+      dispatch(adminAction.updateData(day, initialDaysList))
   }, [dispatch, initialDaysList]);
   return (
     <Grid container style={{ overflowY: "hidden" }} spacing={.5}>

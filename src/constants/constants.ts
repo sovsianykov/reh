@@ -1,10 +1,11 @@
 import { Hour } from "./models";
 import  moment from 'moment';
 import 'moment/locale/pt-br';
-type Color = "#034d4d" | "yellow" | "#D32F2F" | "#CCC";
+export type Color = "#034d4d" | "#F07427" | "#D32F2F" | "#CCC";
 type Status = "free" | "reserv" | "busy" | "info";
 export interface Cell {
   status: "free" | "reserv" | "busy" | "info"| "A"|"B"|"C"|"D";
+  fontColor: "#034d4d" | "#FFF";
   color: Color;
   time?: Hour;
   studio?: "A" | "B" | "C" | "D";
@@ -15,14 +16,21 @@ export class Cell {
     this.color = color;
     this.status = status;
     this.time = time;
+    this.fontColor = "#034d4d";
   }
 }
 
 export const onColorChange = (color: Color) => {
-  if (color === "#034d4d") return "yellow";
-  if (color === "yellow") return "#D32F2F";
+  if (color === "#034d4d") return "#F07427";
+  if (color === "#F07427") return "#D32F2F";
   if (color === "#D32F2F") return "#034d4d";
-  return "#00E131";
+  return "#CCC";
+};
+export const onFontColorChange = (color: Color) => {
+  if (color === "#034d4d") return "#034d4d";
+  if (color === "#F07427") return "#FFF";
+  if (color === "#D32F2F") return "#FFF";
+  return "#034d4d";
 };
 
 export interface Options {
@@ -51,21 +59,21 @@ export const enum Col {
 export class Day {
   constructor(options: Options) {
     this.date = options.date;
-    this.cell = { color: "#034d4d", status: "free" };
+    this.cell = { color: "#034d4d", status: "free",fontColor:"#034d4d" };
     this[Col.studioColA] = [
-      { studio: "A", status: "A", color: "#CCC" },
+      { studio: "A", status: "A", color: "#CCC" ,fontColor:"#034d4d"},
       ...options.ColA,
     ];
     this[Col.studioColB] = [
-      { studio: "B", status: "B", color: "#CCC" },
+      { studio: "B", status: "B", color: "#CCC",fontColor:"#034d4d" },
       ...options.ColB,
     ];
     this[Col.studioColC] = [
-      { studio: "C", status: "C", color: "#CCC" },
+      { studio: "C", status: "C", color: "#CCC",fontColor:"#034d4d" },
       ...options.ColC,
     ];
     this[Col.studioColD] = [
-      { studio: "D", status: "D", color: "#CCC" },
+      { studio: "D", status: "D", color: "#CCC" , fontColor:"#034d4d"},
       ...options.ColD,
     ];
     this.timeCol = [

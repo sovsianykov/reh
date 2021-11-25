@@ -12,7 +12,7 @@ export enum ArticleActionTypes {
 }
 export const query = ["", "album", "musicVideo", "song", "software"];
 
-interface UpdateDataAction {
+export interface UpdateDataAction {
   type: ArticleActionTypes.UPDATE_DATA;
   payload: ListOfDays;
 }
