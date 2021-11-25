@@ -1,10 +1,10 @@
 import { Hour } from "./models";
 import  moment from 'moment';
 import 'moment/locale/pt-br';
-export type Color = "#034d4d" | "#F07427" | "#D32F2F" | "#CCC";
+export type Color = "#034d4d" | "#F07427" | "#D32F2F" | "#CCC" | string;
 type Status = "free" | "reserv" | "busy" | "info";
 export interface Cell {
-  status: "free" | "reserv" | "busy" | "info"| "A"|"B"|"C"|"D";
+  status?: "free" | "reserv" | "busy" | "info"| "A"|"B"|"C"|"D";
   fontColor: "#034d4d" | "#FFF";
   color: Color;
   time?: Hour;
@@ -103,7 +103,7 @@ const getCol = () => {
   return arr;
 };
 
-const option = {
+export const option = {
 
   date: moment().format('DD/MM-YYYY'),
   ColA: getCol(),

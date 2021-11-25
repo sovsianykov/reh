@@ -1,9 +1,10 @@
 
-import {BASE_URL, ArticleActionTypes, List, query} from "./constants";
+import {ArticleActionTypes} from "./constants";
 import {Day, ListOfDays} from "../constants/constants";
 import {Dispatch} from "redux";
-import {addDoc, collection} from "firebase/firestore";
+import {addDoc, collection,getDocs} from "firebase/firestore";
 import {db} from "../firebase/firebase";
+import {fromServerBase} from "../utils/fromServerBase";
 
 const usersCollectionRef = collection(db, "daysList");
 
@@ -35,20 +36,25 @@ export const apiAction = {
   fetchStart() {
     return { type: ArticleActionTypes.FETCH_START };
   },
-  fetchSuccess(data: List) {
-    return { type: ArticleActionTypes.FETCH_SUCCESS, payload: data };
-  },
-  errorMessage() {
-    return {
-      type: ArticleActionTypes.FETCH_FAILURE,
-      payload: "Something vent wrong!",
-    };
-  },
-  fetchData(uri: string, id: number) {
+  fetchSuccess()
+  {return async (dispatch:Dispatch) => {
+            try {
+                const data = await getDocs(usersCollectionRef);
+                let response:any[] = [];
+                if (data) {
+                    response = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+                }
+                console.log( "new List",fromServerBase(response))
+                dispatch({ type: ArticleActionTypes.FETCH_SUCCESS, payload: response });
+            } catch (e) {
+                errorMessage();
+            }
 
-    return {
-      type: ArticleActionTypes.FETCH_DATA,
-      url: `${BASE_URL}${uri}&limit=200&entity=${query[id]}`,
-    };
+        } ;
   },
 };
+function errorMessage() {
+    return {
+        type: ArticleActionTypes.FETCH_FAILURE,
+    };
+}

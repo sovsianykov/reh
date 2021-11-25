@@ -4,7 +4,8 @@ import { useTypesSelector } from "../../hooks/useTypesSelector";
 import CurrentDay from "../../shared/components/currentDay/currentDay";
 import { adminAction } from "../../redux/actions";
 import { createStyles, makeStyles } from "@mui/styles";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
+import {useFetch} from "../../hooks/useFetch";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -16,18 +17,28 @@ const useStyles = makeStyles(() =>
 );
 
 const DaysList = () => {
+ const { list , loading, error } = useFetch()
   const { initialDaysList } = useTypesSelector((state) => state.apiReducer);
   const classes = useStyles();
-  const dispatch = useDispatch()
-  const onUpdateDayHandler = useCallback((e, day) => {
-    e.preventDefault();
-      console.log(initialDaysList)
-    initialDaysList[initialDaysList.findIndex(d => d.date === day.date)] = day
-      dispatch(adminAction.updateData(day, initialDaysList))
-  }, [dispatch, initialDaysList]);
+  const dispatch = useDispatch();
+  const onUpdateDayHandler = useCallback(
+    (e, day) => {
+      e.preventDefault();
+
+      initialDaysList[initialDaysList.findIndex((d) => d.date === day.date)] =
+        day;
+      dispatch(adminAction.updateData(day, initialDaysList));
+    },
+    [dispatch, initialDaysList]
+  );
+
+  if (loading) return( <h4>loading...</h4>)
+
+    if (list === null) return( <h4>loading...</h4>)
+
   return (
-    <Grid container style={{ overflowY: "hidden" }} spacing={.5}>
-      {initialDaysList.map((day, i) => (
+    <Grid container style={{ overflowY: "hidden" }} spacing={0.5}>
+      {list&&list.map((day, i) => (
         <Grid item key={i} xs={12} sm={6} md={4} xl={3}>
           <CurrentDay
             myDay={day}
