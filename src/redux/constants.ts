@@ -79,7 +79,7 @@ export interface List {
   results: Artist[];
 }
 export interface DaysState {
-  list: Day[]| null;
+  list: Day[]
   loading: boolean;
   error: null | string;
   initialDay: Day;

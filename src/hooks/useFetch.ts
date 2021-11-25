@@ -1,4 +1,4 @@
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 import { apiAction } from "../redux/actions";
 import {useTypesSelector} from "./useTypesSelector";

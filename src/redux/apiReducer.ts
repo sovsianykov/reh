@@ -2,7 +2,7 @@ import {ArticleActionTypes, ArticlesAction, DaysState} from "./constants";
 import {initialDay, initialDaysList} from "../constants/constants";
 
 const initialState: DaysState = {
-  list: null,
+  list: initialDaysList,
   loading: false,
   error: null,
   initialDay: initialDay,
@@ -12,7 +12,7 @@ const initialState: DaysState = {
 function apiReducer(state = initialState, action: ArticlesAction): DaysState {
   switch (action.type) {
     case ArticleActionTypes.FETCH_START:
-      return { ...state, list: null, loading: true, error: null };
+      return { ...state, loading: true, error: null };
     case ArticleActionTypes.FETCH_SUCCESS:
       return {
         ...state,
@@ -23,7 +23,6 @@ function apiReducer(state = initialState, action: ArticlesAction): DaysState {
     case ArticleActionTypes.FETCH_FAILURE:
       return {
         ...state,
-        list: null,
         loading: false,
         error: action.payload,
       };

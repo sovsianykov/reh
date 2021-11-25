@@ -84,9 +84,6 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
     (i, col) => {
       col[i].color = onColorChange(col[i].color);
       col[i].fontColor = onFontColorChange(col[i].color);
-      if (col[i].color === "#034d4d") col[i].status = "free";
-      if (col[i].color === "#F07427") col[i].status = "reserv";
-      if (col[i].color === "#D32F2F") col[i].status = "busy";
       setDay({ ...day, [col]: col });
     },
     [day]

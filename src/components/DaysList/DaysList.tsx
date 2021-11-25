@@ -32,13 +32,9 @@ const DaysList = () => {
     [dispatch, initialDaysList]
   );
 
-  if (loading) return( <h4>loading...</h4>)
-
-    if (list === null) return( <h4>loading...</h4>)
-
   return (
     <Grid container style={{ overflowY: "hidden" }} spacing={0.5}>
-      {list&&list.map((day, i) => (
+      {initialDaysList.map((day, i) => (
         <Grid item key={i} xs={12} sm={6} md={4} xl={3}>
           <CurrentDay
             myDay={day}
