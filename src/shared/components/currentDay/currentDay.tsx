@@ -48,7 +48,7 @@ const useStyles = makeStyles(() =>
       "&:hover": {
         background: "#acacac",
         // transform: "rotateZ(360deg)",
-        color: "#fff",
+        color: "#fff!important",
       },
     },
     date: {
@@ -143,7 +143,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
             <div
               onClick={() => onClickHandler(i, day.studioColD)}
               className={classes.cell}
-              style={{ background: cell.color ,color: cell.fontColor}}
+              style={{ background: cell.color }}
               key={i}
             >
               {cell.status}
