@@ -143,7 +143,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
             <div
               onClick={() => onClickHandler(i, day.studioColD)}
               className={classes.cell}
-              style={{ background: cell.color }}
+              style={{ background: cell.color ,color: cell.fontColor}}
               key={i}
             >
               {cell.status}
