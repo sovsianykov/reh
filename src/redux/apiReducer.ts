@@ -2,7 +2,7 @@ import {ArticleActionTypes, ArticlesAction, DaysState} from "./constants";
 import {initialDay, initialDaysList} from "../constants/constants";
 
 const initialState: DaysState = {
-  list: initialDaysList,
+  list: [],
   loading: false,
   error: null,
   initialDay: initialDay,

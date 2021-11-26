@@ -1,13 +1,15 @@
 import React from "react";
 import {CssBaseline} from "@mui/material";
-import DaysList from "./components/DaysList/DaysList";
+import Routing from './Routing/Routing';
+import Navbar from "./components/Navbar/Navbar";
 
-function App() {
+const  App = () => {
   return (
-    <div className="App">
+      <div>
+    <Routing/>
         <CssBaseline/>
-        <DaysList/>
-    </div>
+
+      </div>
   );
 }
 

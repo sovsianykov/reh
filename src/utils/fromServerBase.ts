@@ -6,7 +6,7 @@ export const fromServerBase =(arrServer:any) => {
        const getColFrom = (col: string[]) => {
            const arr = [];
            for (let i = 0; i < 13; i++) {
-               arr[i] = new Cell(col[i]);
+               arr[i] = new Cell(col[i+1]);
            }
            return arr;
        }
@@ -19,7 +19,7 @@ export const fromServerBase =(arrServer:any) => {
            studioColD :getColFrom(obj.studioColD),
            isPublished : obj.isPublished,
        }
-     console.log(new Day(option))
+     console.log(new Day(option),'server')
      return new Day(option)
        }
    )

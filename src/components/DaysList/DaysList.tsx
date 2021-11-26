@@ -33,8 +33,8 @@ const DaysList = () => {
   );
 
   return (
-    <Grid container style={{ overflowY: "hidden" }} spacing={0.5}>
-      {initialDaysList.map((day, i) => (
+    <Grid container style={{ overflowY: "hidden" }} spacing={4}>
+      {list.map((day, i) => (
         <Grid item key={i} xs={12} sm={6} md={4} xl={3}>
           <CurrentDay
             myDay={day}

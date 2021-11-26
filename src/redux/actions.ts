@@ -45,7 +45,7 @@ export const apiAction = {
                     response = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
                 }
                 console.log( "new List",fromServerBase(response))
-                dispatch({ type: ArticleActionTypes.FETCH_SUCCESS, payload: response });
+                dispatch({ type: ArticleActionTypes.FETCH_SUCCESS, payload: fromServerBase(response) });
             } catch (e) {
                 errorMessage();
             }

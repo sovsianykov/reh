@@ -5,9 +5,6 @@ import {  orange } from "@mui/material/colors";
 
 
 const theme = createTheme({
-  status: {
-    danger: orange[500],
-  },
   palette: {
     primary: {
       main: "#800020",

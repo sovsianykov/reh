@@ -2,7 +2,7 @@ import React, {FunctionComponent, useCallback, useState} from "react";
 import "moment/locale/pt-br";
 import { createStyles, makeStyles } from "@mui/styles";
 import theme from "../../../constants/theme";
-import { Day, onColorChange, onFontColorChange} from "../../../constants/constants";
+import { Day, onColorChange } from "../../../constants/constants";
 import { Paper} from "@mui/material";
 
 interface CurrentDayProps {
@@ -43,7 +43,7 @@ const useStyles = makeStyles(() =>
       background: "#d5d4d4",
       cursor: "pointer",
       transition: ".15s ease-in-out",
-      color: "#034d4d",
+      // color: "#034d4d",
 
       "&:hover": {
         background: "#acacac",
@@ -78,18 +78,18 @@ const useStyles = makeStyles(() =>
 
 const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
   const [day, setDay] = useState<Day>(myDay);
-
+    console.log(myDay.studioColA[2].color)
   const classes = useStyles()
   const onClickHandler = useCallback(
     (i, col) => {
       col[i].color = onColorChange(col[i].color);
-      col[i].fontColor = onFontColorChange(col[i].color);
+
       setDay({ ...day, [col]: col });
     },
     [day]
   );
   return (
-    <Paper className={classes.wrapper}>
+    <div className={classes.wrapper}>
       <div className={classes.date}>{day.date}</div>
       <div className={classes.root}>
         <div className={classes.column}>
@@ -149,7 +149,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
         </div>
       </div>
       {button}
-    </Paper>
+    </div>
   );
 };
 

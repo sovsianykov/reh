@@ -14,16 +14,8 @@ export type Color =
   | Colour.busy
   | Colour.info
   | string;
-const statusMap = {
-  [Colour.free] : "free",
-  [Colour.reserv] : "reserv",
-  [Colour.busy] : "free",
-  [Colour.free] : "free",
-}
-
 
 export interface Cell {
-  fontColor: Colour.free | Colour.white;
   color: Color;
   time?: Hour;
   studio?: "A" | "B" | "C" | "D";
@@ -33,7 +25,7 @@ export class Cell {
   constructor(color: Color, time?: Hour) {
     this.color = color;
     this.time = time;
-    this.fontColor = Colour.free;
+
   }
 
   get status() {
@@ -45,6 +37,14 @@ export class Cell {
     if (this.color === "#f3c56e")  return "D"
       return "A"
   }
+  get fontColor() {
+    if (this.color === "#034d4d")  return "#034d4d"
+    if (this.color === "#F07427")  return "#FFF"
+    if (this.color === "#D32F2F")  return "#FFF"
+
+    return "#FFF"
+  }
+
 }
 
 export const onColorChange = (color: Color) => {
@@ -153,4 +153,4 @@ const getInitialListOfDays = (number: number) => {
   }
   return list;
 };
-export const initialDaysList: Day[] = getInitialListOfDays(14);
+export const initialDaysList: Day[] = getInitialListOfDays(100);
