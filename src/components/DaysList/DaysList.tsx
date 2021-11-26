@@ -1,11 +1,16 @@
-import React, { useCallback } from "react";
+import React, { FunctionComponent, useCallback } from "react";
 import { Button, Grid } from "@mui/material";
 import { useTypesSelector } from "../../hooks/useTypesSelector";
 import CurrentDay from "../../shared/components/currentDay/currentDay";
 import { adminAction } from "../../redux/actions";
 import { createStyles, makeStyles } from "@mui/styles";
 import { useDispatch } from "react-redux";
-import {useFetch} from "../../hooks/useFetch";
+import { Day } from "../../constants/constants";
+
+interface DaysListProps {
+  daysList: Day[];
+  isShown: "block" | "none";
+}
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -16,8 +21,7 @@ const useStyles = makeStyles(() =>
   })
 );
 
-const DaysList = () => {
- const { list , loading, error } = useFetch()
+const DaysList: FunctionComponent<DaysListProps> = ({ daysList, isShown }) => {
   const { initialDaysList } = useTypesSelector((state) => state.apiReducer);
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -33,13 +37,14 @@ const DaysList = () => {
   );
 
   return (
-    <Grid container style={{ overflowY: "hidden" }} spacing={4}>
-      {list.map((day, i) => (
+    <Grid container style={{ overflowY: "hidden" }} spacing={1}>
+      {daysList.map((day, i) => (
         <Grid item key={i} xs={12} sm={6} md={4} xl={3}>
           <CurrentDay
             myDay={day}
             button={
               <Button
+                style={{ display: isShown }}
                 onClick={(e) => onUpdateDayHandler(e, day)}
                 className={classes.btn}
                 variant="contained"

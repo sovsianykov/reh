@@ -1,13 +1,24 @@
-import React  from 'react';
+import React, {FunctionComponent} from 'react';
+import Page from "../../../shared/components/Page/Page";
+import DaysList from "../../../components/DaysList/DaysList";
+import {useFetch} from "../../../hooks/useFetch";
+
+
+ interface HomeProps {
+    children? : JSX.Element | JSX.Element[]
+ }
 
 
 
-
-
-const Home= () => {
+const Home:FunctionComponent<HomeProps> = () => {
+    const { list , loading, error } = useFetch()
+      if (loading) return <h1>Loading ...</h1>
+      if (error) return <h1>Something vent wrong!</h1>
     return (
         <div>
-             Home!
+            <Page >
+               <DaysList daysList={list} isShown={"none"}/>
+            </Page>
         </div>
     );
 };

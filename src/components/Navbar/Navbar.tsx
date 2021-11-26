@@ -4,19 +4,22 @@ import {
   Toolbar,
   CssBaseline,
   Typography,
-  Theme,
   useMediaQuery,
   Container,
 } from "@mui/material";
 import theme from "../../constants/theme";
 import { Link } from "react-router-dom";
-import { createStyles, makeStyles, useTheme } from "@mui/styles";
+import { createStyles, makeStyles } from "@mui/styles";
 import DrawerComponent from "../Drawer/Drawer";
 import { AppRoute } from "../constantes/AppRoute";
 import { PageTitle } from "../../shared/components/Title/models";
 
 const useStyles = makeStyles(() =>
   createStyles({
+      root: {
+          zIndex:1,
+
+      },
     navlinks: {
       marginLeft: theme.spacing(5),
       display: "flex",
@@ -41,7 +44,7 @@ function Navbar() {
   const classes = useStyles();
   const isMobile = useMediaQuery("(max-width:600px)");
   return (
-    <AppBar position="static" style={{  background: theme.palette.primary.light}}>
+    <AppBar position="fixed" style={{  background: theme.palette.primary.light, zIndex:1}}>
       <Container style={{ maxWidth: 1600 }} >
         <CssBaseline />
         <Toolbar>
