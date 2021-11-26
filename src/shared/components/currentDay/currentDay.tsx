@@ -89,7 +89,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
     [day]
   );
   return (
-    <div className={classes.wrapper}>
+    <Paper className={classes.wrapper}>
       <div className={classes.date}>{day.date}</div>
       <div className={classes.root}>
         <div className={classes.column}>
@@ -149,7 +149,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
         </div>
       </div>
       {button}
-    </div>
+    </Paper>
   );
 };
 

@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import {makeStyles} from "@mui/styles";
-import {HomeMax, HomeOutlined, MenuRounded} from "@mui/icons-material";
+import { MenuRounded} from "@mui/icons-material";
 import {AppRoute} from "../constantes/AppRoute";
 import {PageTitle} from "../../shared/components/Title/models";
 import theme from "../../constants/theme";
