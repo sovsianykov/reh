@@ -20,7 +20,7 @@ export const fromServerBase =(arrServer:any) => {
            studioColD :getColFrom(obj.studioColD),
            isPublished : obj.isPublished,
        }
-     console.log(new Day(option),'server')
+     // console.log(new Day(option),'server')
      return new Day(option)
        }
    )

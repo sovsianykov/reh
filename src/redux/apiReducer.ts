@@ -31,6 +31,11 @@ function apiReducer(state = initialState, action: ArticlesAction): DaysState {
         ...state,
         initialDaysList: action.payload,
       };
+    case ArticleActionTypes.REWRITE_DATA:
+      return  {
+        ...state,
+        initialDaysList: action.payload,
+      };
     default:
       return state;
   }

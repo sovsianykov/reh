@@ -35,13 +35,15 @@ const DaysList: FunctionComponent<DaysListProps> = ({ daysList, isShown }) => {
     [dispatch, initialDaysList]
   );
     const onRewriteDayHandler = useCallback(
-        (e, day) => {
+        (e, day, i) => {
             e.preventDefault();
-            daysList[initialDaysList.findIndex((d) => d.id === day.id)] =
+
+            daysList[daysList.findIndex((d) => d.id === day.id)] =
                 day;
-            dispatch(adminAction.rewriteData(day));
+            console.log(daysList, 'on update')
+            dispatch(adminAction.rewriteData(day,daysList,i));
         },
-        [daysList, dispatch, initialDaysList]
+        [daysList, dispatch]
     );
 
   return (
@@ -64,7 +66,7 @@ const DaysList: FunctionComponent<DaysListProps> = ({ daysList, isShown }) => {
             rewriteButton={
                 <Button
                     style={{ display: isShown }}
-                    onClick={(e) => onRewriteDayHandler(e, day)}
+                    onClick={(e) => onRewriteDayHandler(e, day,i)}
                     className={classes.btn}
                     variant="contained"
                     color="error"
