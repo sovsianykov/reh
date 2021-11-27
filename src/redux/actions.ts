@@ -17,6 +17,7 @@ export const adminAction = {
         const C = day.studioColC.map(el => el.color)
         const D = day.studioColD.map(el => el.color)
         const newList = {
+            id: day.id,
           date: day.date,
           studioColA : A,
           studioColB : B,

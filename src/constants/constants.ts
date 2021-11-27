@@ -61,6 +61,7 @@ export const onFontColorChange = (color: Color) => {
 };
 
 export interface Options {
+  id: string ;
   date: Date | string | number | moment.Moment;
   studioColA: Cell[];
   studioColB: Cell[];
@@ -68,6 +69,7 @@ export interface Options {
   studioColD: Cell[];
 }
 export interface Day {
+  id: string
   date: Date | string | number | moment.Moment;
   cell: Cell;
   studioColA: Cell[];
@@ -85,6 +87,7 @@ export const enum Col {
 }
 export class Day {
   constructor(options: Options) {
+    this.id = options.id;
     this.date = options.date;
     this.cell = { color: Colour.free, status: "free", fontColor: Colour.free };
     this[Col.studioColA] = [
@@ -131,6 +134,7 @@ const getCol = () => {
 };
 
 export const option = {
+  id: "first",
   date: moment().format("DD/MM-YYYY"),
   studioColA: getCol(),
   studioColB: getCol(),
@@ -144,6 +148,7 @@ const getInitialListOfDays = (number: number) => {
   const list: Day[] = [];
   for (let i = 0; i < number; i++) {
     list[i] = new Day({
+      id : `${1} first`,
       date: moment().add(i, "days").format("DD/MM-YYYY"),
       studioColA: getCol(),
       studioColB: getCol(),

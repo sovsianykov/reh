@@ -12,6 +12,7 @@ export const fromServerBase =(arrServer:any) => {
        }
 
        const option = {
+           id: obj.id,
            date : obj.date,
            studioColA : getColFrom(obj.studioColA),
            studioColB : getColFrom(obj.studioColB),
