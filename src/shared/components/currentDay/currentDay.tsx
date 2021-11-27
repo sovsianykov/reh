@@ -1,15 +1,15 @@
-import React, {FunctionComponent, useCallback, useState} from "react";
+import React, { FunctionComponent, useCallback, useState } from "react";
 import "moment/locale/pt-br";
 import { createStyles, makeStyles } from "@mui/styles";
 import theme from "../../../constants/theme";
 import { Day, onColorChange } from "../../../constants/constants";
-import { Paper} from "@mui/material";
+import { Paper } from "@mui/material";
 
 interface CurrentDayProps {
   myDay: Day;
-  button?: JSX.Element
+  button?: JSX.Element;
+  rewriteButton?: JSX.Element;
 }
-
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -76,10 +76,14 @@ const useStyles = makeStyles(() =>
   })
 );
 
-const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
+const CurrentDay: FunctionComponent<CurrentDayProps> = ({
+  myDay,
+  button,
+  rewriteButton,
+}) => {
   const [day, setDay] = useState<Day>(myDay);
-    console.log(myDay.studioColA[2].color)
-  const classes = useStyles()
+  console.log(myDay.studioColA[2].color);
+  const classes = useStyles();
   const onClickHandler = useCallback(
     (i, col) => {
       col[i].color = onColorChange(col[i].color);
@@ -104,7 +108,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
             <div
               onClick={() => onClickHandler(i, day.studioColA)}
               className={classes.cell}
-              style={{ background: cell.color ,color: cell.fontColor}}
+              style={{ background: cell.color, color: cell.fontColor }}
               key={i}
             >
               {cell.status}
@@ -116,7 +120,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
             <div
               onClick={() => onClickHandler(i, day.studioColB)}
               className={classes.cell}
-              style={{ background: cell.color ,color: cell.fontColor}}
+              style={{ background: cell.color, color: cell.fontColor }}
               key={i}
             >
               {cell.status}
@@ -128,7 +132,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
             <div
               onClick={() => onClickHandler(i, day.studioColC)}
               className={classes.cell}
-              style={{ background: cell.color ,color: cell.fontColor}}
+              style={{ background: cell.color, color: cell.fontColor }}
               key={i}
             >
               {cell.status}
@@ -140,7 +144,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
             <div
               onClick={() => onClickHandler(i, day.studioColD)}
               className={classes.cell}
-              style={{ background: cell.color ,color: cell.fontColor}}
+              style={{ background: cell.color, color: cell.fontColor }}
               key={i}
             >
               {cell.status}
@@ -149,6 +153,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({ myDay,button }) => {
         </div>
       </div>
       {button}
+      {rewriteButton}
     </Paper>
   );
 };

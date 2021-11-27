@@ -8,12 +8,17 @@ export enum ArticleActionTypes {
   FETCH_SUCCESS = "FETCH_SUCCESS",
   FETCH_FAILURE = "FETCH_FAILURE",
   FETCH_DATA = "FETCH_DATA",
-  UPDATE_DATA = "UPDATE_DATA"
+  UPDATE_DATA = "UPDATE_DATA",
+  REWRITE_DATA = "REWRITE_DATA"
 }
 export const query = ["", "album", "musicVideo", "song", "software"];
 
 export interface UpdateDataAction {
   type: ArticleActionTypes.UPDATE_DATA;
+  payload: ListOfDays;
+}
+export interface RewriteDataAction {
+  type: ArticleActionTypes.REWRITE_DATA;
   payload: ListOfDays;
 }
 
@@ -39,6 +44,7 @@ export type ArticlesAction =
   | FetchSuccessAction
   | FetchFailure
   | FetchData
+  | RewriteDataAction
   | UpdateDataAction;
 
 export interface Artist {

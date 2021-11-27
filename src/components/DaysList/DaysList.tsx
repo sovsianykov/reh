@@ -28,13 +28,21 @@ const DaysList: FunctionComponent<DaysListProps> = ({ daysList, isShown }) => {
   const onUpdateDayHandler = useCallback(
     (e, day) => {
       e.preventDefault();
-
       initialDaysList[initialDaysList.findIndex((d) => d.date === day.date)] =
         day;
       dispatch(adminAction.updateData(day, initialDaysList));
     },
     [dispatch, initialDaysList]
   );
+    const onRewriteDayHandler = useCallback(
+        (e, day) => {
+            e.preventDefault();
+            daysList[initialDaysList.findIndex((d) => d.id === day.id)] =
+                day;
+            dispatch(adminAction.rewriteData(day));
+        },
+        [daysList, dispatch, initialDaysList]
+    );
 
   return (
     <Grid container style={{ overflowY: "hidden" }} spacing={1}>
@@ -50,9 +58,21 @@ const DaysList: FunctionComponent<DaysListProps> = ({ daysList, isShown }) => {
                 variant="contained"
                 color="error"
               >
-                UPDATE
+                CREATE
               </Button>
             }
+            rewriteButton={
+                <Button
+                    style={{ display: isShown }}
+                    onClick={(e) => onRewriteDayHandler(e, day)}
+                    className={classes.btn}
+                    variant="contained"
+                    color="error"
+                >
+                    Update
+                </Button>
+            }
+            
           />
         </Grid>
       ))}

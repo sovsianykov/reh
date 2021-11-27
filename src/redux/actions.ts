@@ -2,32 +2,43 @@
 import {ArticleActionTypes} from "./constants";
 import {Day, ListOfDays} from "../constants/constants";
 import {Dispatch} from "redux";
-import {addDoc, collection,getDocs} from "firebase/firestore";
+import {addDoc, collection,getDocs,doc,updateDoc} from "firebase/firestore";
 import {db} from "../firebase/firebase";
 import {fromServerBase} from "../utils/fromServerBase";
+
 
 const usersCollectionRef = collection(db, "daysList");
 
 
 export const adminAction = {
   updateData(day:Day,daysList:ListOfDays) {
-    return async (dispatch:Dispatch) => {
-        const A = day.studioColA.map(el => el.color)
-        const B = day.studioColB.map(el => el.color)
-        const C = day.studioColC.map(el => el.color)
-        const D = day.studioColD.map(el => el.color)
-        const newList = {
-            id: day.id,
-          date: day.date,
-          studioColA : A,
-          studioColB : B,
-          studioColC : C,
-          studioColD : D,
-          isPublished: day.isPublished
-        }
-        await addDoc(usersCollectionRef, newList);
-        dispatch({ type: ArticleActionTypes.UPDATE_DATA, payload: daysList });
+      return async (dispatch: Dispatch) => {
+          const A = day.studioColA.map(el => el.color)
+          const B = day.studioColB.map(el => el.color)
+          const C = day.studioColC.map(el => el.color)
+          const D = day.studioColD.map(el => el.color)
+          const newList = {
+              id: day.id,
+              date: day.date,
+              studioColA: A,
+              studioColB: B,
+              studioColC: C,
+              studioColD: D,
+              isPublished: day.isPublished
+          }
+          await addDoc(usersCollectionRef, newList);
+          dispatch({type: ArticleActionTypes.UPDATE_DATA, payload: daysList});
       }
+  },
+        rewriteData(day: Day) {
+          return  async (dispatch: Dispatch) => {
+          const userDoc = doc(db, "daysList", day.id);
+          await updateDoc(userDoc, {day});
+              dispatch({type: ArticleActionTypes.REWRITE_DATA, payload: day});
+
+
+          };
+
 
 }}
 
