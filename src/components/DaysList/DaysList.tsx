@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useCallback } from "react";
-import { Button, Grid } from "@mui/material";
+import {Button, Grid } from "@mui/material";
 import { useTypesSelector } from "../../hooks/useTypesSelector";
 import CurrentDay from "../../shared/components/currentDay/currentDay";
 import { adminAction } from "../../redux/actions";
@@ -10,6 +10,8 @@ import { Day } from "../../constants/constants";
 interface DaysListProps {
   daysList: Day[];
   isShown: "block" | "none";
+    isShownUpdate: "block" | "none";
+    create?:boolean;
 }
 
 const useStyles = makeStyles(() =>
@@ -21,7 +23,7 @@ const useStyles = makeStyles(() =>
   })
 );
 
-const DaysList: FunctionComponent<DaysListProps> = ({ daysList, isShown }) => {
+const DaysList: FunctionComponent<DaysListProps> = ({ daysList, isShown,isShownUpdate,create }) => {
   const { initialDaysList } = useTypesSelector((state) => state.apiReducer);
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -48,9 +50,13 @@ const DaysList: FunctionComponent<DaysListProps> = ({ daysList, isShown }) => {
 
   return (
     <Grid container style={{ overflowY: "hidden" }} spacing={1}>
+
+
+
       {daysList.map((day, i) => (
         <Grid item key={i} xs={12} sm={6} md={4} xl={3}>
           <CurrentDay
+              create={create}
             myDay={day}
             button={
               <Button
@@ -65,7 +71,7 @@ const DaysList: FunctionComponent<DaysListProps> = ({ daysList, isShown }) => {
             }
             rewriteButton={
                 <Button
-                    style={{ display: isShown }}
+                    style={{ display: isShownUpdate }}
                     onClick={(e) => onRewriteDayHandler(e, day,i)}
                     className={classes.btn}
                     variant="contained"

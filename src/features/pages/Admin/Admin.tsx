@@ -20,9 +20,9 @@ const Admin :FunctionComponent<HomeProps> = () => {
         <Box>
             <Page >
                 <h2>Update</h2>
-                <DaysList daysList={list} isShown={"block"}/>
+                <DaysList daysList={list} isShown={"none"} isShownUpdate={"block"} />
                 <h2>Create</h2>
-                <DaysList daysList={initialDaysList} isShown={"block"}/>
+                <DaysList daysList={initialDaysList} isShown={"block"} isShownUpdate={"none"} create={true}/>
             </Page>
         </Box>
     );

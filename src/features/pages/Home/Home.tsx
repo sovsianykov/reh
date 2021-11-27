@@ -5,7 +5,8 @@ import {useFetch} from "../../../hooks/useFetch";
 
 
  interface HomeProps {
-    children? : JSX.Element | JSX.Element[]
+    children? : JSX.Element | JSX.Element[];
+
  }
 
 
@@ -17,7 +18,7 @@ const Home:FunctionComponent<HomeProps> = () => {
     return (
         <div>
             <Page >
-               <DaysList daysList={list} isShown={"none"}/>
+               <DaysList daysList={list} isShown={"none"} isShownUpdate={"none"} />
             </Page>
         </div>
     );

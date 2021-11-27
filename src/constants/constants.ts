@@ -135,7 +135,7 @@ const getCol = () => {
 
 export const option = {
   id: "first",
-  date: moment().format("DD/MM-YYYY"),
+  date: moment().format("DD/MM/YYY"),
   studioColA: getCol(),
   studioColB: getCol(),
   studioColC: getCol(),
@@ -149,7 +149,7 @@ const getInitialListOfDays = (number: number) => {
   for (let i = 0; i < number; i++) {
     list[i] = new Day({
       id : `${1} first`,
-      date: moment().add(i, "days").format("DD/MM-YYYY"),
+      date: moment().add(i, "days").format("DD/MM/YYYY"),
       studioColA: getCol(),
       studioColB: getCol(),
       studioColC: getCol(),
@@ -158,4 +158,4 @@ const getInitialListOfDays = (number: number) => {
   }
   return list;
 };
-export const initialDaysList: Day[] = getInitialListOfDays(100);
+export const initialDaysList: Day[] = getInitialListOfDays(1);
