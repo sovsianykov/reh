@@ -2,8 +2,9 @@ import React, {FunctionComponent} from 'react';
 import Page from "../../../shared/components/Page/Page";
 import DaysList from "../../../components/DaysList/DaysList";
 import {initialDaysList} from "../../../constants/constants";
-import {Box} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import {useFetch} from "../../../hooks/useFetch";
+import theme from "../../../constants/theme";
 
 
 interface HomeProps {
@@ -19,9 +20,13 @@ const Admin :FunctionComponent<HomeProps> = () => {
     return (
         <Box>
             <Page >
-                <h2>Update</h2>
+                <Typography variant='h5' color={theme.palette.primary.dark}  textAlign={"center"}>
+                    UPDATE EXISTED
+                </Typography>
                 <DaysList daysList={list} isShown={"none"} isShownUpdate={"block"} />
-                <h2>Create</h2>
+                <Typography variant='h5' color={theme.palette.primary.dark} textAlign={"center"}>
+                    CREATE A NEW DAY
+                </Typography>
                 <DaysList daysList={initialDaysList} isShown={"block"} isShownUpdate={"none"} create={true}/>
             </Page>
         </Box>
