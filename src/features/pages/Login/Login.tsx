@@ -32,7 +32,7 @@ const Login = () => {
     let google_provider = new firebase.auth.GoogleAuthProvider();
     firebase
       .auth()
-      .signInWithPopup(google_provider)
+      .signInWithRedirect(google_provider)
       .then((re: any) => {
         console.log(re.additionalUserInfo.profile.email);
         if (
