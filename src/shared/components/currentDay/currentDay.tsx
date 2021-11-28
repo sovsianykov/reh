@@ -1,5 +1,4 @@
 import React, {
-  ChangeEvent,
   FunctionComponent,
   useCallback,
   useState,
@@ -8,8 +7,7 @@ import "moment/locale/pt-br";
 import { createStyles, makeStyles } from "@mui/styles";
 import theme from "../../../constants/theme";
 import { Day, onColorChange } from "../../../constants/constants";
-import { FormGroup, Paper, TextField } from "@mui/material";
-import moment from "moment";
+import { Paper } from "@mui/material";
 
 interface CurrentDayProps {
   myDay: Day;
@@ -87,40 +85,28 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({
   myDay,
   button,
   rewriteButton,
-  create,
 }) => {
   const [day, setDay] = useState<Day>(myDay);
-  const [date, setDate] = useState<string>(moment().format("DD/MM/YYYY"));
-  const dateHandler = useCallback(
-    (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-      setDate(event.target.value);
-    },
-    []
-  );
+  // const [date, setDate] = useState<string>(moment().format("DD/MM/YYYY"));
+  // const dateHandler = useCallback(
+  //   (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+  //     setDate(event.target.value);
+  //   },
+  //   []
+  // );
 
   const classes = useStyles();
   const onClickHandler = useCallback(
     (i, col) => {
       col[i].color = onColorChange(col[i].color);
-      setDay({ ...day, [col]: col, date });
+      setDay({ ...day, [col]: col });
     },
-    [date, day]
+    [ day]
   );
   return (
     <Paper className={classes.wrapper}>
       <div className={classes.date}>
-        {create ? (
-          <FormGroup>
-            <TextField
-              type="date"
-              variant="standard"
-              onChange={dateHandler}
-              value={date}
-            />
-          </FormGroup>
-        ) : (
-          day.date
-        )}
+        {day.date}
       </div>
       <div className={classes.root}>
         <div className={classes.column}>

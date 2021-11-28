@@ -158,4 +158,4 @@ const getInitialListOfDays = (number: number) => {
   }
   return list;
 };
-export const initialDaysList: Day[] = getInitialListOfDays(1);
+export const initialDaysList: Day[] = getInitialListOfDays(14);
