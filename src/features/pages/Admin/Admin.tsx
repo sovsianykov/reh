@@ -36,7 +36,6 @@ const Admin: FunctionComponent<HomeProps> = () => {
     return (
         <Box>
           <Page>
-            <Button variant='outlined' onClick={signOut} color='secondary'>sign out</Button>
 
             <Typography
                 variant="h5"
@@ -59,6 +58,7 @@ const Admin: FunctionComponent<HomeProps> = () => {
                 isShownUpdate={"none"}
                 create={true}
             />
+            <Button variant='outlined' onClick={signOut} color='secondary'>sign out</Button>
           </Page>
         </Box>
     );
