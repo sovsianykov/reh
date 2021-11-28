@@ -74,11 +74,6 @@ function DrawerComponent() {
                     </ListItem>
                     <ListItem onClick={() => setOpenDrawer(false)}>
                         <ListItemText>
-                            <Link to={AppRoute.Login} className={classes.link}>{PageTitle.Login}</Link>
-                        </ListItemText>
-                    </ListItem>
-                    <ListItem onClick={() => setOpenDrawer(false)}>
-                        <ListItemText>
                             <Link to={AppRoute.Contacts} className={classes.link}>{PageTitle.Contacts}</Link>
                         </ListItemText>
                     </ListItem>
