@@ -76,9 +76,6 @@ function Navbar() {
               <Link to={AppRoute.Contacts} className={classes.link}>
                 {PageTitle.Contacts}
               </Link>
-              <Link to={AppRoute.Login} className={classes.link}>
-                {PageTitle.Login}
-              </Link>
             </div>
           )}
         </Toolbar>

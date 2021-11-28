@@ -9,9 +9,9 @@ export const useFetch = () => {
     dispatch(apiAction.fetchStart());
     dispatch(apiAction.fetchSuccess());
   }, [dispatch]);
-  const { list, loading, error } = useTypesSelector(
+  const { list, loading, error, login} = useTypesSelector(
     (state) => state.apiReducer
   );
 
-  return { list, loading, error };
+  return { list, loading, error, login};
 };

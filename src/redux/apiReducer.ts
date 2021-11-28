@@ -3,6 +3,7 @@ import {initialDay, initialDaysList} from "../constants/constants";
 
 const initialState: DaysState = {
   list: [],
+  login: false,
   loading: false,
   error: null,
   initialDay: initialDay,
@@ -11,6 +12,11 @@ const initialState: DaysState = {
 
 function apiReducer(state = initialState, action: ArticlesAction): DaysState {
   switch (action.type) {
+    case ArticleActionTypes.LOGIN :
+      return {
+        ...state,
+        login:action.payload
+      }
     case ArticleActionTypes.FETCH_START:
       return { ...state, loading: true, error: null };
     case ArticleActionTypes.FETCH_SUCCESS:

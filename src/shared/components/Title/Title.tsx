@@ -6,7 +6,7 @@ interface TitleProps {
   children: PageTitle;
 }
 
-const Title: FunctionComponent<TitleProps> = ({ children }) => {
+const Title: FunctionComponent<TitleProps> = ({children}) => {
   return (
     <Box flex="true">
       <Typography variant="h1">{children}</Typography>

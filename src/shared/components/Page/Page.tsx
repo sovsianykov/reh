@@ -3,7 +3,7 @@ import {makeStyles} from "@mui/styles";
 
 
 export interface PageProps {
-    children: JSX.Element | JSX.Element[]
+    children?: JSX.Element | JSX.Element[]
 }
  const useStyles = makeStyles({
      root : {

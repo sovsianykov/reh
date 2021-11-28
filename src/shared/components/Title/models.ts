@@ -7,4 +7,5 @@ export enum PageTitle {
     Admin = "Admin",
     Login= "Login",
     Contacts = "Contacts",
+    SignInWithGoogle = "Sign in with Google",
 }

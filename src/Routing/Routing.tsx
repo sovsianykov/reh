@@ -25,8 +25,8 @@ function Routing() {
             <Route path={AppRoute.StudioD} element={<StudioD/>} />
             <Route path={AppRoute.Login} element={<Login/>} />
             <Route path={AppRoute.Admin} element={<Admin/>} />
-            <Route path="/contact" element={<Contacts/>} />
-            <Route path="/login" element={<Login/>} />
+            <Route path={AppRoute.Contacts} element={<Contacts/>} />
+
         </Routes>
 
     </Router>

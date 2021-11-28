@@ -29,6 +29,12 @@ function helper(day: Day) {
 }
 
 export const adminAction = {
+  login(login:boolean) {
+    return async (dispatch: Dispatch) => {
+      console.log(login)
+      dispatch({ type: ArticleActionTypes.LOGIN, payload: login });
+    };
+  },
   updateData(day: Day, daysList: ListOfDays) {
     return async (dispatch: Dispatch) => {
       const newList = helper(day);

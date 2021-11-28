@@ -7,12 +7,16 @@ export enum ArticleActionTypes {
   FETCH_DATA = "FETCH_DATA",
   UPDATE_DATA = "UPDATE_DATA",
   REWRITE_DATA = "REWRITE_DATA",
+  LOGIN = "LOGIN",
 }
-export const query = ["", "album", "musicVideo", "song", "software"];
 
 export interface UpdateDataAction {
   type: ArticleActionTypes.UPDATE_DATA;
   payload: ListOfDays;
+}
+export interface Login {
+  type: ArticleActionTypes.LOGIN;
+  payload: boolean;
 }
 export interface RewriteDataAction {
   type: ArticleActionTypes.REWRITE_DATA;
@@ -42,10 +46,12 @@ export type ArticlesAction =
   | FetchFailure
   | FetchData
   | RewriteDataAction
+  | Login
   | UpdateDataAction;
 
 export interface DaysState {
   list: Day[];
+  login: boolean;
   loading: boolean;
   error: null | string;
   initialDay: Day;
