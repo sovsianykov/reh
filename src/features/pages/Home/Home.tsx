@@ -13,8 +13,8 @@ import {useFetch} from "../../../hooks/useFetch";
 
 const Home:FunctionComponent<HomeProps> = () => {
     const { list , loading, error } = useFetch()
-      if (loading) return <h1>Loading ...</h1>
-      if (error) return <h1>Something vent wrong!</h1>
+      if (loading) return <h1>Loadin ...</h1>
+      if (error) return <h1>Something!</h1>
     return (
         <div>
             <Page >

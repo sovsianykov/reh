@@ -38,6 +38,22 @@ const useStyles = makeStyles(() => ({
     height: 37,
     overflow: "hidden",
   },
+  contactsWrapper: {
+    margin: "0 auto",
+    width: 150,
+    height: 37,
+    overflow: "hidden",
+  },
+  emailWrapper: {
+    margin: "0 auto",
+    textDecoration: "none",
+    color: "#fff",
+    fontSize: "14px",
+    width: 190,
+    height: 37,
+    overflow: "hidden",
+    textAlign:"center"
+  },
   image: {
     width: "100%",
     display: "block",
@@ -107,9 +123,14 @@ function DrawerComponent() {
             <ListItem onClick={() => setOpenDrawer(false)} />
             <ListItem onClick={() => setOpenDrawer(false)} />
           </List>
-          <div className={classes.logoWrapper}>
+          <div className={classes.contactsWrapper}>
             <a href="tel:+38067-238-99-93" className={classes.link}>
               (067)-238-99-93
+            </a>
+          </div>
+          <div className={classes.emailWrapper}>
+            <a href="mailto: kaskarecords@gmail.com" className={classes.emailWrapper}>
+              kaskarecords@gmail.com
             </a>
           </div>
         </div>
