@@ -87,13 +87,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({
   rewriteButton,
 }) => {
   const [day, setDay] = useState<Day>(myDay);
-  // const [date, setDate] = useState<string>(moment().format("DD/MM/YYYY"));
-  // const dateHandler = useCallback(
-  //   (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-  //     setDate(event.target.value);
-  //   },
-  //   []
-  // );
+
 
   const classes = useStyles();
   const onClickHandler = useCallback(

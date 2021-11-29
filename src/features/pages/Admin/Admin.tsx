@@ -9,8 +9,6 @@ import { firebase } from '../../../firebase/firebaseAut'
 import Login from "../Login/Login";
 
 
-
-
 interface HomeProps {
   children?: JSX.Element | JSX.Element[];
 }
