@@ -18,7 +18,8 @@ const useStyles = makeStyles(() => ({
   wrapper: {
     background: theme.palette.primary.light,
     width: 200,
-    height: "100%",
+    height: "100vh",
+    position : "relative"
   },
   root: {
     background: theme.palette.primary.light,
@@ -41,8 +42,11 @@ const useStyles = makeStyles(() => ({
   contactsWrapper: {
     margin: "0 auto",
     width: 150,
-    height: 37,
+    height: 25,
     overflow: "hidden",
+    position: "absolute",
+    bottom: 100,
+    left: 25
   },
   emailWrapper: {
     margin: "0 auto",
@@ -52,7 +56,16 @@ const useStyles = makeStyles(() => ({
     width: 190,
     height: 37,
     overflow: "hidden",
-    textAlign:"center"
+    textAlign:"center",
+    position: "absolute",
+    bottom: 50,
+    cursor: "pointer"
+  },
+  email: {
+    textDecoration: "none",
+    color: "#fff",
+    fontSize: "14px",
+    cursor: "pointer"
   },
   image: {
     width: "100%",
@@ -129,7 +142,7 @@ function DrawerComponent() {
             </a>
           </div>
           <div className={classes.emailWrapper}>
-            <a href="mailto: kaskarecords@gmail.com" className={classes.emailWrapper}>
+            <a href="mailto: kaskarecords@gmail.com" className={classes.email}>
               kaskarecords@gmail.com
             </a>
           </div>
