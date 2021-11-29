@@ -85,8 +85,8 @@ function DrawerComponent() {
               </Link>
             </ListItemText>
           </ListItem>
-          <ListItem onClick={() => setOpenDrawer(false)}></ListItem>
-          <ListItem onClick={() => setOpenDrawer(false)}></ListItem>
+          <ListItem onClick={() => setOpenDrawer(false)}/>
+          <ListItem onClick={() => setOpenDrawer(false)}/>
         </List>
       </Drawer>
       <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
