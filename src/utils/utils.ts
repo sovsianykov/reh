@@ -1,6 +1,6 @@
 import {collection} from "firebase/firestore";
 import {db} from "../firebase/firebase";
-import {Day, FireBaseType} from "../constants/constants";
+import {Day} from "../constants/constants";
 
 export const usersCollectionRef = collection(db, "daysList");
 export function helper(day: Day):any {
