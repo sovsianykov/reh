@@ -45,7 +45,7 @@ const useStyles = makeStyles(() => ({
     height: 25,
     overflow: "hidden",
     position: "absolute",
-    bottom: 40,
+    bottom: 50,
     left: 25
   },
   emailWrapper: {
