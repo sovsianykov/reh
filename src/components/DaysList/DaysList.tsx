@@ -47,16 +47,23 @@ const DaysList: FunctionComponent<DaysListProps> = ({ daysList, isShown,isShownU
         },
         [daysList, dispatch]
     );
+    const onDeleteDayHandler = useCallback(
+        (e, day) => {
+            e.preventDefault();
 
+            daysList[daysList.findIndex((d) => d.id === day.id)] =
+                day;
+            console.log(daysList, 'on update')
+            dispatch(adminAction.deleteData(day,daysList));
+        },
+        [daysList, dispatch]
+    );
   return (
     <Grid container style={{ overflowY: "hidden" }} spacing={1}>
-
-
-
       {daysList.map((day, i) => (
         <Grid item key={i} xs={12} sm={6} md={4} xl={3}>
           <CurrentDay
-              create={create}
+            create={create}
             myDay={day}
             button={
               <Button
@@ -64,23 +71,33 @@ const DaysList: FunctionComponent<DaysListProps> = ({ daysList, isShown,isShownU
                 onClick={(e) => onUpdateDayHandler(e, day)}
                 className={classes.btn}
                 variant="contained"
-                color="error"
+                color="success"
               >
                 CREATE
               </Button>
             }
             rewriteButton={
-                <Button
-                    style={{ display: isShownUpdate }}
-                    onClick={(e) => onRewriteDayHandler(e, day)}
-                    className={classes.btn}
-                    variant="contained"
-                    color="error"
-                >
-                    Update
-                </Button>
+              <Button
+                style={{ display: isShownUpdate }}
+                onClick={(e) => onRewriteDayHandler(e, day)}
+                className={classes.btn}
+                variant="contained"
+                color="inherit"
+              >
+                Update
+              </Button>
             }
-            
+            deleteButton={
+              <Button
+                style={{ display: isShownUpdate }}
+                onClick={(e) => onDeleteDayHandler(e, day)}
+                className={classes.btn}
+                variant="contained"
+                color="error"
+              >
+                DELETE
+              </Button>
+            }
           />
         </Grid>
       ))}

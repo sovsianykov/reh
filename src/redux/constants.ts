@@ -7,11 +7,16 @@ export enum ArticleActionTypes {
   FETCH_DATA = "FETCH_DATA",
   UPDATE_DATA = "UPDATE_DATA",
   REWRITE_DATA = "REWRITE_DATA",
+  DELETE_DATA = "DELETE_DATA",
   LOGIN = "LOGIN",
 }
 
 export interface UpdateDataAction {
   type: ArticleActionTypes.UPDATE_DATA;
+  payload: ListOfDays;
+}
+export interface DeleteDataAction {
+  type: ArticleActionTypes.DELETE_DATA;
   payload: ListOfDays;
 }
 export interface Login {
@@ -46,6 +51,7 @@ export type ArticlesAction =
   | FetchFailure
   | FetchData
   | RewriteDataAction
+  | DeleteDataAction
   | Login
   | UpdateDataAction;
 

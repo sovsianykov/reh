@@ -1,32 +1,17 @@
 import { ArticleActionTypes } from "./constants";
-import { Day, ListOfDays } from "../constants/constants";
+import {Day, ListOfDays} from "../constants/constants";
 import { Dispatch } from "redux";
 import {
   addDoc,
-  collection,
   doc,
   getDocs,
   updateDoc,
+    deleteDoc
 } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import { fromServerBase } from "../utils/fromServerBase";
+import {helper, usersCollectionRef} from "../utils/utils";
 
-const usersCollectionRef = collection(db, "daysList");
-function helper(day: Day) {
-  const A = day.studioColA.map((el) => el.color);
-  const B = day.studioColB.map((el) => el.color);
-  const C = day.studioColC.map((el) => el.color);
-  const D = day.studioColD.map((el) => el.color);
-  return {
-    id: day.id,
-    date: day.date,
-    studioColA: A,
-    studioColB: B,
-    studioColC: C,
-    studioColD: D,
-    isPublished: day.isPublished,
-  };
-}
 
 export const adminAction = {
   login(login:boolean) {
@@ -40,6 +25,13 @@ export const adminAction = {
       const newList = helper(day);
       await addDoc(usersCollectionRef, newList);
       dispatch({ type: ArticleActionTypes.UPDATE_DATA, payload: daysList });
+    };
+  },
+  deleteData(day: Day, daysList: ListOfDays) {
+    return async (dispatch: Dispatch) => {
+      const userDoc = doc(db, "daysList", day.id);
+      await deleteDoc(userDoc);
+      dispatch({ type: ArticleActionTypes.DELETE_DATA, payload: daysList });
     };
   },
   rewriteData(day: Day, daysList: Day[]) {

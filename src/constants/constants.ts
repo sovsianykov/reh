@@ -1,5 +1,5 @@
 import { Hour } from "./models";
-import moment from "moment";
+import moment, {Moment} from "moment";
 import "moment/locale/pt-br";
 export enum Colour {
   free = "#034d4d",
@@ -8,6 +8,16 @@ export enum Colour {
   info = "#CCC",
   white = "#FFF",
 }
+export interface  FireBaseType {
+  id: string| number;
+  date : string | number | Date | Moment;
+  studioColA : string[];
+  studioColB : string[];
+  studioColC : string[];
+  studioColD : string[];
+  isPublished?: boolean;
+}
+
 export type Color =
   | Colour.free
   | Colour.reserv
@@ -62,7 +72,7 @@ export const onFontColorChange = (color: Color) => {
 
 export interface Options {
   id: string ;
-  date: Date | string | number | moment.Moment;
+  date:  string ;
   studioColA: Cell[];
   studioColB: Cell[];
   studioColC: Cell[];
@@ -134,7 +144,7 @@ const getCol = () => {
 };
 
 export const option = {
-  id: "first",
+  id: `${Date.now()}index`,
   date: moment().format("DD/MM/YYY"),
   studioColA: getCol(),
   studioColB: getCol(),

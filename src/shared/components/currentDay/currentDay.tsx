@@ -13,6 +13,7 @@ interface CurrentDayProps {
   myDay: Day;
   button?: JSX.Element;
   rewriteButton?: JSX.Element;
+  deleteButton?: JSX.Element;
   create?: boolean;
 }
 
@@ -85,6 +86,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({
   myDay,
   button,
   rewriteButton,
+    deleteButton
 }) => {
   const [day, setDay] = useState<Day>(myDay);
 
@@ -104,7 +106,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({
       </div>
       <div className={classes.root}>
         <div className={classes.column}>
-          {day.timeCol.map((cell, i) => (
+          {day.timeCol.map((cell,i) => (
             <div className={classes.cell} key={i}>
               {cell}
             </div>
@@ -161,6 +163,7 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({
       </div>
       {button}
       {rewriteButton}
+      {deleteButton}
     </Paper>
   );
 };
