@@ -12,12 +12,17 @@ import { MenuRounded } from "@mui/icons-material";
 import { AppRoute } from "../constantes/AppRoute";
 import { PageTitle } from "../../shared/components/Title/models";
 import theme from "../../constants/theme";
+import logo from "../../assets/img/logo.png";
 
 const useStyles = makeStyles(() => ({
-  root: {
+  wrapper: {
     background: theme.palette.primary.light,
     width: 200,
     height: "100%",
+  },
+  root: {
+    background: theme.palette.primary.light,
+    width: 200,
   },
   link: {
     textDecoration: "none",
@@ -27,6 +32,16 @@ const useStyles = makeStyles(() => ({
   icon: {
     color: "white",
   },
+  logoWrapper: {
+    margin: "40px  auto 20px auto",
+    width: 150,
+    height: 37,
+    overflow: "hidden",
+  },
+  image: {
+    width: "100%",
+    display: "block",
+  },
 }));
 
 function DrawerComponent() {
@@ -35,59 +50,69 @@ function DrawerComponent() {
   return (
     <>
       <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
-        <List className={classes.root}>
-          <ListItem onClick={() => setOpenDrawer(false)}>
-            <ListItemText>
-              <Link to={AppRoute.Home} className={classes.link}>
-                {PageTitle.Home}
-              </Link>
-            </ListItemText>
-          </ListItem>
-          <ListItem onClick={() => setOpenDrawer(false)}>
-            <ListItemText>
-              <Link to={AppRoute.StudioA} className={classes.link}>
-                {PageTitle.StudioA}
-              </Link>
-            </ListItemText>
-          </ListItem>
-          <ListItem onClick={() => setOpenDrawer(false)}>
-            <ListItemText>
-              <Link to={AppRoute.StudioB} className={classes.link}>
-                {PageTitle.StudioB}
-              </Link>
-            </ListItemText>
-          </ListItem>
-          <ListItem onClick={() => setOpenDrawer(false)}>
-            <ListItemText>
-              <Link to={AppRoute.StudioC} className={classes.link}>
-                {PageTitle.StudioC}
-              </Link>
-            </ListItemText>
-          </ListItem>
-          <ListItem onClick={() => setOpenDrawer(false)}>
-            <ListItemText>
-              <Link to={AppRoute.StudioD} className={classes.link}>
-                {PageTitle.StudioD}
-              </Link>
-            </ListItemText>
-          </ListItem>
-          <ListItem onClick={() => setOpenDrawer(false)}>
-            <ListItemText>
-              <Link to={AppRoute.Admin} className={classes.link}>
-                {PageTitle.Admin}
-              </Link>
-            </ListItemText>
-          </ListItem>
-          <ListItem onClick={() => setOpenDrawer(false)}>
-            <ListItemText>
-              <Link to={AppRoute.Contacts} className={classes.link}>
-                {PageTitle.Contacts}
-              </Link>
-            </ListItemText>
-          </ListItem>
-          <ListItem onClick={() => setOpenDrawer(false)}/>
-          <ListItem onClick={() => setOpenDrawer(false)}/>
-        </List>
+        <div className={classes.wrapper}>
+          <div className={classes.logoWrapper}>
+            <img src={logo} alt="logo205" className={classes.image} />
+          </div>
+          <List className={classes.root}>
+            <ListItem onClick={() => setOpenDrawer(false)}>
+              <ListItemText>
+                <Link to={AppRoute.Home} className={classes.link}>
+                  {PageTitle.Home}
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <ListItem onClick={() => setOpenDrawer(false)}>
+              <ListItemText>
+                <Link to={AppRoute.StudioA} className={classes.link}>
+                  {PageTitle.StudioA}
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <ListItem onClick={() => setOpenDrawer(false)}>
+              <ListItemText>
+                <Link to={AppRoute.StudioB} className={classes.link}>
+                  {PageTitle.StudioB}
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <ListItem onClick={() => setOpenDrawer(false)}>
+              <ListItemText>
+                <Link to={AppRoute.StudioC} className={classes.link}>
+                  {PageTitle.StudioC}
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <ListItem onClick={() => setOpenDrawer(false)}>
+              <ListItemText>
+                <Link to={AppRoute.StudioD} className={classes.link}>
+                  {PageTitle.StudioD}
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <ListItem onClick={() => setOpenDrawer(false)}>
+              <ListItemText>
+                <Link to={AppRoute.Admin} className={classes.link}>
+                  {PageTitle.Admin}
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <ListItem onClick={() => setOpenDrawer(false)}>
+              <ListItemText>
+                <Link to={AppRoute.Contacts} className={classes.link}>
+                  {PageTitle.Contacts}
+                </Link>
+              </ListItemText>
+            </ListItem>
+            <ListItem onClick={() => setOpenDrawer(false)} />
+            <ListItem onClick={() => setOpenDrawer(false)} />
+          </List>
+          <div className={classes.logoWrapper}>
+            <a href="tel:+38067-238-99-93" className={classes.link}>
+              (067)-238-99-93
+            </a>
+          </div>
+        </div>
       </Drawer>
       <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
         <MenuRounded className={classes.icon} />
