@@ -3,7 +3,8 @@ import { useCallback } from "react";
 import { Box, Button } from "@mui/material";
 import Page from "../../../shared/components/Page/Page";
 import { PageTitle } from "../../../shared/components/Title/models";
-import { firebase } from "../../../firebase/firebaseAut";
+import { firebase  } from "../../../firebase/firebaseAut";
+
 import { useDispatch } from "react-redux";
 import { adminAction } from "../../../redux/actions";
 import { createStyles, makeStyles } from "@mui/styles";
@@ -37,7 +38,8 @@ const Login = () => {
         // console.log(re.additionalUserInfo.profile.email);
         if (
           re.additionalUserInfo.profile.email === "swebproger@gmail.com" ||
-          re.additionalUserInfo.profile.email === "kaskarecords@gmail.com"
+          re.additionalUserInfo.profile.email === "kaskarecords@gmail.com" ||
+          re.additionalUserInfo.profile.email === "valentin.korniyenko@gmail.com"
         ) {
 
           dispatch(adminAction.login(true));
