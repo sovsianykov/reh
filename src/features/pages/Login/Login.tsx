@@ -34,11 +34,12 @@ const Login = () => {
       .auth()
       .signInWithPopup(google_provider)
       .then((re: any) => {
-        console.log(re.additionalUserInfo.profile.email);
+        // console.log(re.additionalUserInfo.profile.email);
         if (
           re.additionalUserInfo.profile.email === "swebproger@gmail.com" ||
           re.additionalUserInfo.profile.email === "kaskarecords@gmail.com"
         ) {
+
           dispatch(adminAction.login(true));
         }
       })

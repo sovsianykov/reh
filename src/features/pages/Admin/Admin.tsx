@@ -7,6 +7,8 @@ import { useFetch } from "../../../hooks/useFetch";
 import theme from "../../../constants/theme";
 import { firebase } from '../../../firebase/firebaseAut'
 import Login from "../Login/Login";
+import {adminAction} from "../../../redux/actions";
+import {useDispatch} from "react-redux";
 
 
 interface HomeProps {
@@ -16,10 +18,12 @@ interface HomeProps {
 const Admin: FunctionComponent<HomeProps> = () => {
   const [isUserSignedIn, setUserSignedIn] = useState(false)
   const {list, loading, error ,login} = useFetch();
+  const dispatch = useDispatch()
 
   // console.log(login ,'from state')
   const signOut =() =>{
     firebase.auth().signOut()
+    dispatch(adminAction.login(false))
   }
   firebase.auth().onAuthStateChanged((user:any) =>{
     if (user&&login) {
