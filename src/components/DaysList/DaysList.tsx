@@ -2,7 +2,7 @@ import React, { FunctionComponent, useCallback } from "react";
 import {Button, Grid } from "@mui/material";
 import { useTypesSelector } from "../../hooks/useTypesSelector";
 import CurrentDay from "../../shared/components/currentDay/currentDay";
-import { adminAction } from "../../redux/actions";
+import {adminAction, apiAction} from "../../redux/actions";
 import { createStyles, makeStyles } from "@mui/styles";
 import { useDispatch } from "react-redux";
 import { Day } from "../../constants/constants";
@@ -53,8 +53,10 @@ const DaysList: FunctionComponent<DaysListProps> = ({ daysList, isShown,isShownU
 
             daysList[daysList.findIndex((d) => d.id === day.id)] =
                 day;
-            console.log(daysList, 'on update')
+
             dispatch(adminAction.deleteData(day,daysList));
+            dispatch(apiAction.fetchStart());
+            dispatch(apiAction.fetchSuccess());
         },
         [daysList, dispatch]
     );
