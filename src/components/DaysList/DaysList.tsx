@@ -1,17 +1,17 @@
 import React, { FunctionComponent, useCallback } from "react";
-import {Button, Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { useTypesSelector } from "../../hooks/useTypesSelector";
 import CurrentDay from "../../shared/components/currentDay/currentDay";
-import {adminAction, apiAction} from "../../redux/actions";
+import { adminAction, apiAction } from "../../redux/actions";
 import { createStyles, makeStyles } from "@mui/styles";
 import { useDispatch } from "react-redux";
 import { Day } from "../../constants/constants";
 
 interface DaysListProps {
   daysList: Day[];
-  isShown: "block" | "none";
-    isShownUpdate: "block" | "none";
-    create?:boolean;
+  isShown?: "block" | "none";
+  isShownUpdate?: "block" | "none";
+  create?: boolean;
 }
 
 const useStyles = makeStyles(() =>
@@ -23,7 +23,12 @@ const useStyles = makeStyles(() =>
   })
 );
 
-const DaysList: FunctionComponent<DaysListProps> = ({ daysList, isShown,isShownUpdate,create }) => {
+const DaysList: FunctionComponent<DaysListProps> = ({
+  daysList,
+  isShown ="none",
+  isShownUpdate="none",
+  create,
+}) => {
   const { initialDaysList } = useTypesSelector((state) => state.apiReducer);
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -36,30 +41,27 @@ const DaysList: FunctionComponent<DaysListProps> = ({ daysList, isShown,isShownU
     },
     [dispatch, initialDaysList]
   );
-    const onRewriteDayHandler = useCallback(
-        (e, day) => {
-            e.preventDefault();
+  const onRewriteDayHandler = useCallback(
+    (e, day) => {
+      e.preventDefault();
 
-            daysList[daysList.findIndex((d) => d.id === day.id)] =
-                day;
-            console.log(daysList, 'on update')
-            dispatch(adminAction.rewriteData(day,daysList));
-        },
-        [daysList, dispatch]
-    );
-    const onDeleteDayHandler = useCallback(
-        (e, day) => {
-            e.preventDefault();
+      daysList[daysList.findIndex((d) => d.id === day.id)] = day;
+      dispatch(adminAction.rewriteData(day, daysList));
+    },
+    [daysList, dispatch]
+  );
+  const onDeleteDayHandler = useCallback(
+    (e, day) => {
+      e.preventDefault();
 
-            daysList[daysList.findIndex((d) => d.id === day.id)] =
-                day;
+      daysList[daysList.findIndex((d) => d.id === day.id)] = day;
 
-            dispatch(adminAction.deleteData(day,daysList));
-            dispatch(apiAction.fetchStart());
-            dispatch(apiAction.fetchSuccess());
-        },
-        [daysList, dispatch]
-    );
+      dispatch(adminAction.deleteData(day, daysList));
+      dispatch(apiAction.fetchStart());
+      dispatch(apiAction.fetchSuccess());
+    },
+    [daysList, dispatch]
+  );
   return (
     <Grid container style={{ overflowY: "hidden" }} spacing={1}>
       {daysList.map((day, i) => (

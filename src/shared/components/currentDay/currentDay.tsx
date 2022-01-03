@@ -1,13 +1,14 @@
 import React, {
-  FunctionComponent,
+  FunctionComponent, memo,
   useCallback,
   useState,
 } from "react";
 import "moment/locale/pt-br";
 import { createStyles, makeStyles } from "@mui/styles";
 import theme from "../../../constants/theme";
-import { Day, onColorChange } from "../../../constants/constants";
-import { Paper } from "@mui/material";
+import { Cell, Day, onColorChange } from "../../../constants/constants";
+import { Box, Paper } from "@mui/material";
+import StudioCol from "./StudioCol";
 
 interface CurrentDayProps {
   myDay: Day;
@@ -86,10 +87,10 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({
   myDay,
   button,
   rewriteButton,
-    deleteButton
+  deleteButton,
 }) => {
   const [day, setDay] = useState<Day>(myDay);
-
+  const cols = [day.studioColA, day.studioColB, day.studioColC, day.studioColD];
 
   const classes = useStyles();
   const onClickHandler = useCallback(
@@ -97,70 +98,25 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({
       col[i].color = onColorChange(col[i].color);
       setDay({ ...day, [col]: col });
     },
-    [ day]
+    [day]
   );
   return (
     <Paper className={classes.wrapper}>
-      <div className={classes.date}>
-        {day.date}
-      </div>
-      <div className={classes.root}>
+      <div className={classes.date}>{day.date}</div>
+      <Box className={classes.root}>
         <div className={classes.column}>
-          {day.timeCol.map((cell,i) => (
+          {day.timeCol.map((cell, i) => (
             <div className={classes.cell} key={i}>
               {cell}
             </div>
           ))}
         </div>
-        <div className={classes.column}>
-          {day["studioColA"].map((cell, i) => (
-            <div
-              onClick={() => onClickHandler(i, day.studioColA)}
-              className={classes.cell}
-              style={{ background: cell.color, color: cell.fontColor }}
-              key={i}
-            >
-              {cell.status}
-            </div>
-          ))}
-        </div>
-        <div className={classes.column}>
-          {day.studioColB.map((cell, i) => (
-            <div
-              onClick={() => onClickHandler(i, day.studioColB)}
-              className={classes.cell}
-              style={{ background: cell.color, color: cell.fontColor }}
-              key={i}
-            >
-              {cell.status}
-            </div>
-          ))}
-        </div>
-        <div className={classes.column}>
-          {day.studioColC.map((cell, i) => (
-            <div
-              onClick={() => onClickHandler(i, day.studioColC)}
-              className={classes.cell}
-              style={{ background: cell.color, color: cell.fontColor }}
-              key={i}
-            >
-              {cell.status}
-            </div>
-          ))}
-        </div>
-        <div className={classes.column}>
-          {day.studioColD.map((cell, i) => (
-            <div
-              onClick={() => onClickHandler(i, day.studioColD)}
-              className={classes.cell}
-              style={{ background: cell.color, color: cell.fontColor }}
-              key={i}
-            >
-              {cell.status}
-            </div>
-          ))}
-        </div>
-      </div>
+        {cols.map(
+          (col: Cell[], i: number) => (
+            <StudioCol col={col} onClick={onClickHandler} key={i} />
+          )
+        )}
+      </Box>
       {button}
       {rewriteButton}
       {deleteButton}
@@ -168,4 +124,4 @@ const CurrentDay: FunctionComponent<CurrentDayProps> = ({
   );
 };
 
-export default CurrentDay;
+export default memo(CurrentDay);
